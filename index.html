@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOHAMMAD ARLI REVANSHA MAHENDRA | Civil & Coastal Engineer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #b30000; 
+            --dark: #121212;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #334155; line-height: 1.7; overflow-x: hidden; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            padding: 15px 8%; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo { font-family: 'Montserrat'; font-weight: 800; font-size: 20px; color: var(--dark); text-transform: uppercase; }
+        .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-links a { text-decoration: none; color: #334155; font-weight: 600; font-size: 12px; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- HERO SLIDER --- */
+        .hero-slider { width: 100%; height: 100vh; position: relative; }
+        .swiper { width: 100%; height: 100%; }
+        .swiper-slide { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        
+        .slide-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1; }
+        .slide-content { position: relative; z-index: 2; color: white; text-align: center; padding: 0 15%; max-width: 3000px; }
+        .slide-content h1 { font-family: 'Montserrat'; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; margin-bottom: 20px; line-height: 1.1; letter-spacing: -1px; }
+        .slide-content p { font-size: 1.2rem; border-left: 5px solid var(--primary); padding-left: 25px; margin-bottom: 35px; max-width: 700px; margin-inline: auto; font-weight: 300; }
+
+        .slide-video, .slide-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .slide-img { background-size: cover; background-position: center; }
+        
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--white) !important;
+            background: rgba(179, 0, 0, 0.4) !important;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            z-index: 1010 !important;
+            transition: var(--transition);
+        }
+        .swiper-button-next:hover, .swiper-button-prev:hover { background: var(--primary) !important; transform: translateY(-50%) scale(1.1); }
+        
+
+        /* --- SECTION GLOBAL --- */
+        section { padding: 100px 10%; }
+        .section-header { margin-bottom: 50px; }
+        .section-header h2 { font-family: 'Montserrat'; font-size: 32px; text-transform: uppercase; position: relative; }
+        .section-header h2::after { content: ''; display: block; width: 50px; height: 5px; background: var(--primary); margin-top: 10px; }
+
+        /* --- ABOUT & CV --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: center; text-align: justify; }
+        .profile-frame { width: 100%; border-radius: 10px; box-shadow: 20px 20px 0 var(--primary); }
+        
+        /* --- PROJECT CARDS --- */
+        .project-card { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; }
+        .project-card:hover { transform: translateY(-5px); }
+        .project-body { padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .tag { display: inline-block; background: #fee2e2; color: var(--primary); padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 11px; margin-bottom: 15px; text-transform: uppercase; }
+
+        /* --- SKILLS --- */
+        .skill-bar { margin-bottom: 25px; }
+        .bar-bg { background: #e5e7eb; height: 8px; border-radius: 10px; margin-top: 8px; }
+        .bar-fill { background: var(--primary); height: 100%; border-radius: 10px; transition: 1.5s ease-in-out; }
+
+        /* --- BUTTONS --- */
+        .btn { padding: 12px 30px; background: var(--primary); color: white; text-decoration: none; border-radius: 5px; font-weight: 700; display: inline-block; transition: 0.3s; font-size: 12px; border: none; text-transform: uppercase; }
+        .btn:hover { background: #800000; transform: scale(1.05); }
+
+        /* --- FOOTER & BUBBLES --- */
+        footer { background: var(--dark); color: white; text-align: center; padding: 80px 10%; position: relative; overflow: hidden; }
+        .bubbles span {
+            position: absolute; bottom: -100px; width: 30px; height: 30px;
+            background: rgba(204, 125, 125, 0.1); border-radius: 50%; animation: rise 5s infinite;
+        }
+        @keyframes rise { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-1000px); opacity: 0; } }
+
+        @media (max-width: 968px) { .about-grid, .project-body { grid-template-columns: 1fr; } }
+        /* --- CSS LEGACY ADHI 4 KOTAK VIDEO --- */
+.legacy-adhi-section {
+    padding: 80px 8%;
+    background-color: #ffffff;
+}
+
+.legacy-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    color: #121212;
+}
+
+.legacy-title::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 35px;
+    background-color: #e11a22;
+}
+
+.legacy-container {
+    display: grid;
+    /* Menggunakan 4 kolom */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.legacy-card {
+    text-align: center;
+}
+
+.legacy-video-wrapper {
+    width: 100%;
+    height: 500px; 
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    position: relative;
+    background: #000;
+}
+
+.legacy-video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.legacy-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.legacy-info p {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Responsif untuk Tablet & HP */
+@media (max-width: 1100px) {
+    .legacy-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .legacy-container { grid-template-columns: 1fr; }
+    .legacy-video-wrapper { height: 400px; }
+}
+
+.cv-card {
+    align-self: start;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border-bottom: 3px solid var(--primary);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.legacy-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.legacy-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: slideLeft 20s linear infinite;
+}
+
+.legacy-card {
+    flex: 0 0 320px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.legacy-video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+FOTO
+.project-body {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* ❗ UKURAN TIDAK DIUBAH SAMA SEKALI */
+.project-slider {
+    background: #e2e8f0;
+    border-radius: 10px;
+    width: 90%;
+    height: 80%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 🔥 PENTING: 4 ITEM (3 asli + 1 clone) */
+.slides {
+    display: flex;
+    width: 400%;
+    height: 100%;
+    animation: wrap3 6s linear infinite;
+}
+
+/* GAMBAR TETAP */
+.slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 10px;
+}
+
+/* 🔥 FIX WRAP 3 FOTO (INI YANG BIKIN SEMUA TERLIHAT) */
+@keyframes wrap3 {
+    0%   { transform: translateX(0%); }
+    
+    20%  { transform: translateX(0%); }
+
+    35%  { transform: translateX(-100%); }
+    55%  { transform: translateX(-100%); }
+
+    70%  { transform: translateX(-200%); }
+    90%  { transform: translateX(-200%); }
+
+    100% { transform: translateX(-300%); }
+}
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MOHAMMAD ARLI REVANSHA MAHENDRA</div>
+        <ul class="nav-links">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">PROFILE</a></li>
+            <li><a href="#projects">Portofolio</a></li>
+            <li><a href="#skills">SKILL</a></li>
+            <li><a href="#legacy">EXPERIENCE</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-slider" id="home">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                
+        
+                <div class="swiper-slide">
+                    <video class="slide-video" autoplay muted loop playsinline>
+                        <source src="VIDEO/VideoProject_1_1_1.mp4" type="video/mp4">
+                    </video>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <h1 data-aos="fade-up">MOHAMMAD ARLI REVANSHA MAHENDRA</h1>
+                        <p data-aos="fade-up" data-aos-delay="200">Civil Engineer | Specialized in Coastal & Water Resources Engineering.</p>
+                        <a href="#about" class="btn">My Profile</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <video class="slide-video" autoplay muted loop playsinline>
+                        <source src="VIDEO/VideoProject_1_1.mp4" type="video/mp4">
+                    </video>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <h1 data-aos="fade-up">COASTAL ENGINEERING</h1>
+                        <p data-aos="fade-up" data-aos-delay="200">Wave Analysis, Shoreline Protection, and Coastal Structure Design.</p>
+                        <a href="#projects" class="btn">Explore Portfolio</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <video class="slide-video" autoplay muted loop playsinline>
+                        <source src="VIDEO/TimeVideo_20250926_110715.mp4" type="video/mp4">
+                    </video>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <h1 data-aos="fade-up">WATER RESOURCES ENGINEERING</h1>
+                        <p data-aos="fade-up" data-aos-delay="200">Hydrology, River Engineering, Flood Control, and Dam Analysis.</p>
+                        <a href="#projects" class="btn">Explore Portfolio</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <video class="slide-video" autoplay muted loop playsinline>
+                        <source src="VIDEO/MIKEZero-[Data File_ MODELEKSKUTA1.dfsu]2026-04-1209-43-58.mp4"type="video/mp4">
+                    </video>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <h1>HYDRODYNAMIC MODELING</h1>
+                        <p>Numerical Simulation Using MIKE 21 for Waves, Currents, and Sediment Transport.</p>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="slide-img" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1500')"></div>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <h1>SURVEY & ANALYSIS</h1>
+                        <p>Topographic Survey, Data Processing, and Technical Analysis for Infrastructure Planning.</p>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="slide-img" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1500')"></div>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <h1>CONTACT ME</h1>
+                        <p>Let’s collaborate on engineering projects, research, or professional opportunities.</p>
+                         <a href="#contact" class="btn">CONTACT</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <section id="about">
+    <div class="section-header" data-aos="fade-right">
+        <h2>PROFILE</h2>
+    </div>
+
+    <div class="about-grid">
+
+        <!-- FOTO -->
+        <div data-aos="zoom-in" style="text-align: center;">
+
+    <img src="FOTO PRIBADI/FOTO ARLI.png" class="profile-frame" alt="Foto Profil">
+
+    <h3 style="
+        margin-top: 15px;
+        font-family: 'Montserrat';
+        font-weight: 900;
+        font-size: 19px;
+        letter-spacing: 1px;
+    ">
+        MOHAMMAD ARLI REVANSHA MAHENDRA
+    </h3>
+
+</div>
+
+        <!-- KONTEN -->
+        <div data-aos="fade-left">
+
+            <h3 style="font-size: 26px; margin-bottom: 20px; color: var(--dark);">
+                Civil Engineering Student | Coastal & Water Resources Engineering
+            </h3>
+
+            <p style="text-align: justify;">
+                I am a <strong>Civil Infrastructure Engineering student at ITS</strong> with a focus on <strong>Coastal Engineering and Water Resources Engineering</strong>.
+                I have a strong interest in topographic surveying, hydrological and hydrodynamic analysis, numerical modelling, 
+                as well as the planning of water structures such as <strong>breakwaters, seawalls,groin,dam and flood control systems</strong>.
+            </p>
+
+            <br>
+
+            <!-- GRID UTAMA (INI KUNCI FIX) -->
+            <div style="max-width: 1000px;">
+                <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px;">
+
+                    <!-- KIRI -->
+                    <div style="display: grid; gap: 20px;">
+
+                        <!-- Pendidikan -->
+                        <div class="cv-card">
+                            <i class="fas fa-graduation-cap" style="color:var(--primary); margin-bottom: 10px;"></i>
+                            <h4>Education</h4>
+                            <p style="font-size: 15px;">
+                                Civil Engineering – Focus on Coastal & Water Resources Engineering
+                            </p>
+                        </div>
+
+                        <!-- Keahlian -->
+                        <div class="cv-card" style="align-self: start;">
+                            <i class="fas fa-cogs" style="color:var(--primary); margin-bottom: 10px;"></i>
+                            <h4>Key Skills</h4>
+
+                            <ul style="font-size: 14px; padding-left: 20px; line-height: 1.7;">
+                                <li>Hydrodynamics & Coastal Modeling</li>
+                                <li>Hydrology & Water Resources Analysis</li>
+                                <li>Surveying & Topographic</li>
+                                <li>MIKE 21 & AutoCAD</li>
+                            </ul>
+                        </div>
+
+                        <!-- Tombol -->
+                        <a href="CV/CV_MOHAMAMD ARLI REVANSHA MAHENDRA.pdf" class="btn" download target="_blank">
+                            <i class="fas fa-download"></i> Download CV (PDF)
+                        </a>
+
+                    </div>
+
+                    <!-- KANAN -->
+                    <div class="cv-card">
+                        <i class="fas fa-briefcase" style="color:var(--primary); margin-bottom: 10px;"></i>
+                        <h4>Experience</h4>
+
+                        <ol style="padding-left: 20px; line-height: 1.8; font-size: 15px;">
+                            <li>Hydrological analysis and water resources systems</li>
+                            <li>Water structure planning and design</li>
+                            <li>Coastal protection structure design</li>
+                            <li>Marine hydrodynamic modelling</li>
+                            <li>Technical report preparation</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section id="projects" style="background: #f1f5f9;">
+        <div class="section-header" data-aos="fade-up">
+            <h2>PROJECT PORTOFOLIO</h2>
+        </div>
+
+        <!-- ===================== PENGALAMAN 1 ===================== -->
+        <div class="project-card" data-aos="fade-up">
+    <div class="project-body">
+        <div>
+             <div class="bubbles">
+            <span style="left:50%; width:70px; height:70px;"></span>
+            <span style="left:25%; animation-delay: 1s; width:25px; height:25px;"></span>
+            <span style="left:55%; animation-delay: 3s; width:50px; height:50px;"></span>
+            <span style="left:40%; animation-delay: 3s; width:30px; height:30px;"></span>
+            <span style="left:90%; animation-delay: 3s; width:90px; height:90px;"></span>
+        </div>
+            <span class="tag">Coastal Engineering</span>
+            <h3>Hydrodynamic Modelling of Kuta Beach</h3>
+            <p><strong>Objective:</strong> To analyze wave deformation and sediment transport along the coastline.</p>
+            <p><strong>Method:</strong> Numerical simulation using MIKE 21 HD and analysis of 50 years of wave data (2025–2076).</p>
+            <p><strong>Results:</strong> Current distribution maps and coastal protection recommendations (breakwater/groin).</p>
+        </div>
+
+        <!-- 🔥 SLIDER 2 FOTO (UKURAN TETAP SEPERTI PUNYAMU) -->
+        <div class="project-slider">
+            <div class="slides">
+                <img src="GAMBAR/KUTA 4.png">
+                <img src="GAMBAR/KUTA 3.png">
+                <img src="GAMBAR/KUTA 1.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+         <!-- ===================== PENGALAMAN 2 ===================== -->
+    <div class="project-card" data-aos="fade-up">
+    <div class="project-body">
+
+        <!-- 🔥 GAMBAR KIRI -->
+        <div class="project-slider">
+            <div class="slides">
+                <img src="GAMBAR/SUNGAI 2.png">
+                <img src="GAMBAR/SUNGAI 1.png">
+                <img src="GAMBAR/SUNGAI 3.png">
+            </div>
+        </div>
+
+        <!-- TEKS KANAN -->
+        <div>
+            <span class="tag">WATER RESOURCES ENGINEERING</span>
+            <h3>River Hydrology Analysis</h3>
+            <p><strong>Objective:</strong> To analyze river flow behavior for flood control purposes.</p>
+            <p><strong>Method:</strong> Analysis of rainfall and river discharge data.</p>
+            <p><strong>Results:</strong> Identification of flow patterns and peak discharge for flood mitigation planning.</p>
+        </div>
+         <div class="bubbles">
+            <span style="left:50%; width:70px; height:70px;"></span>
+            <span style="left:25%; animation-delay: 1s; width:25px; height:25px;"></span>
+            <span style="left:55%; animation-delay: 3s; width:50px; height:50px;"></span>
+            <span style="left:40%; animation-delay: 3s; width:30px; height:30px;"></span>
+            <span style="left:90%; animation-delay: 3s; width:90px; height:90px;"></span>
+        </div>
+
+    </div>
+</div>
+
+         <!-- ===================== PENGALAMAN 3 ===================== -->
+        <div class="project-card" data-aos="fade-up">
+            <div class="project-body">
+                <div>
+                     <div class="bubbles">
+            <span style="left:50%; width:70px; height:70px;"></span>
+            <span style="left:25%; animation-delay: 1s; width:25px; height:25px;"></span>
+            <span style="left:55%; animation-delay: 3s; width:50px; height:50px;"></span>
+            <span style="left:40%; animation-delay: 3s; width:30px; height:30px;"></span>
+            <span style="left:90%; animation-delay: 3s; width:90px; height:90px;"></span>
+        </div>
+                    <span class="tag">Geospatial Analysis</span>
+                    <h3>Topographic Survey Using Drone (ITS Area)</h3>
+                    <p><strong>Objective:</strong> To collect topographic data across the ITS area using drone-based surveying methods.</p>
+                    <p><strong>Method:</strong> Aerial survey using drone imagery combined with GIS processing for spatial data extraction and analysis.</p>
+                    <p><strong>Results:</strong> Generation of a Digital Elevation Model (DEM) and topographic map for supporting engineering and spatial analysis within ITS area.</p>
+                </div>
+                <!-- 🔥 SLIDER 2 FOTO (UKURAN TETAP SEPERTI PUNYAMU) -->
+        <div class="project-slider">
+            <div class="slides">
+                <img src="GAMBAR/DRONE 2.png">
+                <img src="GAMBAR/DRONE 1.png">
+                <img src="GAMBAR/DRONE 3.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+         <!-- ===================== PENGALAMAN 4 ===================== -->
+        <div class="project-card" data-aos="fade-up">
+    <div class="project-body">
+
+        <!-- 🔥 GAMBAR KIRI -->
+        <div class="project-slider">
+            <div class="slides">
+                <img src="GAMBAR/CANDIDASA 3.jpg">
+                <img src="GAMBAR/CANDIDASA 2.png">
+                <img src="GAMBAR/CANDIDASA 1.png">
+            </div>
+        </div>
+
+        <!-- TEKS KANAN -->
+        <div>
+            <span class="tag">Civil Design</span>
+            <h3>Coastal Shoreline Analysis</h3>
+            <p><strong>Objective:</strong> To analyze shoreline changes due to erosion and sedimentation processes for coastal protection purposes.</p>
+            <p><strong>Method:</strong> Shoreline condition analysis using spatial data and hydrodynamic modelling, supported by AutoCAD Civil 3D.</p>
+            <p><strong>Results:</strong> Identification of erosion and sedimentation zones along the coastline, along with recommendations for coastal protection systems such as seawalls and breakwaters.</p>
+        </div>
+         <div class="bubbles">
+            <span style="left:50%; width:70px; height:70px;"></span>
+            <span style="left:25%; animation-delay: 1s; width:25px; height:25px;"></span>
+            <span style="left:55%; animation-delay: 4s; width:50px; height:50px;"></span>
+            <span style="left:40%; animation-delay: 4s; width:30px; height:30px;"></span>
+            <span style="left:90%; animation-delay: 4s; width:90px; height:90px;"></span>
+        </div>
+
+    </div>
+</div>
+    </section>
+
+    <section id="skills">
+        <div class="section-header" data-aos="fade-right">
+            <h2>SKILL</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+            <div>
+                <div class="skill-bar">
+                    <span>Topographic Surveying (Drone & Field Survey)  <b>90%</b></span>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <span>Hydrological & Hydrodynamic Analysis    <b>90%</b></span>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <span>Coastal Structure Design    <b>80%</b></span>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <span>Hydraulic Structure Planning and Design    <b>80%</b></span>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+                </div>
+            </div>
+            <div>
+                <div class="skill-bar">
+                    <span>English Proficiency (British Council Standard) <b>70%</b></span>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <span>Work Team    <b>90%</b></span>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <span>Communication    <b>90%</b></span>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 70%;"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <span>Time Management    <b>85%</b></span>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
+                </div>
+            </div>
+            <div class="cv-card" style="align-self: start;">
+                            <i class="fas fa-cogs" style="color:var(--primary); margin-bottom: 10px;"></i>
+                            <h4>SOFTWARE</h4>
+
+                            <ul style="font-size: 14px; padding-left: 20px; line-height: 1.7;">
+                                <li>AutoCAD & Civil 3d</li>
+                                <li>ArcGIS</li>
+                                <li>HEC-RAS & HEC-HMS</li>
+                                <li>EPANET</li>
+                                <li>Geostudio</li>
+                                <li>Delft-3D</li>
+                                <li>MIKE-21</li>
+                                <li>Agisoft Metashape Professional</li>
+                            </ul>
+                        </div>
+        </div>
+    </section>
+   <section class="legacy-adhi-section" id="legacy">
+    <h2 class="legacy-title">EXPERIENCE</h2>
+
+    <div class="legacy-wrapper">
+        <div class="legacy-track">
+
+            <!-- 🔥 SET 1 (8 CARD ASLI) -->
+
+           <div class="legacy-card">
+    <div class="legacy-video-wrapper">
+        <img src="GAMBAR/1.png" alt="Urban Drainage Survey">
+    </div>
+    <div class="legacy-info">
+        <h3>Existing Urban Drainage System Survey in Surabaya</h3>
+        <p>Surabaya, East Java</p>
+    </div>
+</div>
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/VideoProject_1_1_1.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                    <h3>Bali Beach Conservation Project</h3>
+                    <p>Kuta Beach, Bali</p>
+                </div>
+            </div>
+
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/MIKEZero-[Data File_ MODELEKSKUTA1.dfsu]2026-04-1209-43-58.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                    <h3>Hydrodynamic Modelling of Coastal Area</h3>
+                    <p>Kuta, Bali</p>
+                </div>
+            </div>
+
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/TimeVideo_20250807_094448.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                    <h3>Material Classification</h3>
+                    <p>Benoa, Bali</p>
+                </div>
+            </div>
+
+            <div class="legacy-card">
+    <div class="legacy-video-wrapper">
+        <img src="GAMBAR/PROTER.png" alt="Urban Drainage Survey">
+                </div>
+                <div class="legacy-info">
+                    <h3>Sedimentation Analysis of the Avore River</h3>
+                    <p>Sidoarjo</p>
+                </div>
+            </div>
+
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/TimeVideo_20250926_110715.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                    <h3>Coastal Engineering Design (Breakwater)</h3>
+                    <p>Coastal Engineering</p>
+                </div>
+            </div>
+
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                   <video autoplay muted loop playsinline>
+                        <source src="VIDEO/VideoProject11111.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                    <h3>Integrated Irrigation System Project (SID)</h3>
+                    <p>Sumenep and Pamekasan Regencies</p>
+                </div>
+            </div>
+
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/VideoProject1_1_1_1.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                    <h3>Survey & Drone Mapping</h3>
+                    <p>ITS, Surabaya</p>
+                </div>
+            </div>
+
+            <!-- 🔥 SET 2 (COPY PERSIS SET 1) -->
+
+            <!-- 1 -->
+               <div class="legacy-card">
+    <div class="legacy-video-wrapper">
+        <img src="GAMBAR/1.png" alt="Urban Drainage Survey">
+    </div>
+    <div class="legacy-info">
+        <h3>Existing Urban Drainage System Survey in Surabaya</h3>
+        <p>Surabaya, East Java</p>
+    </div>
+</div>
+
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/VideoProject_1_1_1.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                     <h3>Bali Beach Conservation Project</h3>
+                    <p>Kuta Beach, Bali</p>
+                </div>
+            </div>
+
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/MIKEZero-[Data File_ MODELEKSKUTA1.dfsu]2026-04-1209-43-58.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                    <h3>Hydrodynamic Modelling of Coastal Area</h3>
+                    <p>Kuta, Bali</p>
+                </div>
+            </div>
+
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/TimeVideo_20250807_094448.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                     <h3>Material Classification</h3>
+                    <p>Benoa, Bali</p>
+                </div>
+            </div>
+
+            <div class="legacy-card">
+    <div class="legacy-video-wrapper">
+        <img src="GAMBAR/PROTER.png" alt="Urban Drainage Survey">
+                </div>
+                <div class="legacy-info">
+                    <h3>Sedimentation Analysis of the Avore River</h3>
+                    <p>Sidoarjo</p>
+                </div>
+            </div>
+
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/TimeVideo_20250926_110715.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                    <h3>Coastal Engineering Design (Breakwater)</h3>
+                    <p>Coastal Engineering</p>
+                </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/VideoProject11111.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                    <h3>Integrated Irrigation System Project (SID)</h3>
+                    <p>Sumenep and Pamekasan Regencies</p>
+                </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="legacy-card">
+                <div class="legacy-video-wrapper">
+                    <video autoplay muted loop playsinline>
+                        <source src="VIDEO/VideoProject1_1_1_1.mp4">
+                    </video>
+                </div>
+                <div class="legacy-info">
+                    <h3>Survey & Drone Mapping</h3>
+                    <p>ITS, Surabaya</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <footer id="contact">
+        <div style="position: relative; z-index: 2;">
+            <h2 style="font-family: 'Montserrat'; font-size: 32px; margin-bottom: 20px;">CONTACT ME</h2>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="mailto:arlirevansha@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://www.linkedin.com/in/mohammad-arli-revansha-mahendra-715ba0267/" target="_blank" class="btn" style="background: #0077b5;">
+    <i class="fab fa-linkedin"></i> LinkedIn
+</a>
+               <a href="https://wa.me/6281615594880" target="_blank" class="btn" style="background: #25d366;">
+    <i class="fab fa-whatsapp"></i> WhatsApp
+</a>
+            </div>
+            <br><br>
+            <p style="font-size: 12px; opacity: 0.5;">&copy; 2026. All content is prepared for a professional portfolio.</p>
+        </div>
+        <div class="bubbles">
+            <span style="left:50%; width:30px; height:30px;"></span>
+            <span style="left:25%; animation-delay: 3s;"></span>
+            <span style="left:70%; animation-delay: 5s;"></span>
+        </div>
+        <div class="bubbles">
+            <span style="left:35%; width:80px; height:80px;"></span>
+            <span style="left:5%; animation-delay: 3s;"></span>
+            <span style="left:95%; animation-delay: 6s;"></span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            effect: "fade",
+            fadeEffect: {
+                crossFade: true // Mencegah teks bertumpukan
+            },
+            speed: 1200,
+            autoplay: {
+                delay: 8000,
+                disableOnInteraction: false,
+            },
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+        });
+    </script>
+</body>
+</html>
